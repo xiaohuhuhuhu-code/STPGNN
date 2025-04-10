@@ -1,7 +1,7 @@
 import numpy as np
 
 # 加载 .npz 文件
-file_path = 'data/PEMSD4/train.npz'  # 替换为你的文件路径
+file_path = 'data/PEMSD4/val.npz'  # 替换为你的文件路径
 data = np.load(file_path)
 
 # 查看文件中包含的数组名称
