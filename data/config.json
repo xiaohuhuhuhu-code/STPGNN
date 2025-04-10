@@ -1,6 +1,6 @@
 {
   "PEMS04": {
-    "data_dir": "data/PEMS04",
+    "data_dir": "data/PEMSD4",
     "num_nodes": 307,
     "num_slots": 48,
     "normalization": "batch"
@@ -18,7 +18,7 @@
     "normalization": "batch"
   },
   "PEMS08": {
-    "data_dir": "data/PEMS08",
+    "data_dir": "data/PEMSD8",
     "num_nodes": 170,
     "num_slots": 48,
     "normalization": "batch"
@@ -35,8 +35,8 @@
     "num_slots": 48,
     "normalization": "batch"
   },
-  "ENG": {
-    "data_dir": "data/ENG",
+  "England": {
+    "data_dir": "data/England",
     "num_nodes": 314,
     "num_slots": 48,
     "normalization": "layer"

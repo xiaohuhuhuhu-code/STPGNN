@@ -90,6 +90,7 @@ class STPGNN(nn.Module):
         self.gate_convs = nn.ModuleList()
         self.residual_convs = nn.ModuleList()
         self.skip_convs = nn.ModuleList()
+        self.skip_2convs = nn.ModuleList()
         self.normal = nn.ModuleList()
         self.gconv = nn.ModuleList()
 
@@ -131,6 +132,10 @@ class STPGNN(nn.Module):
                                                      kernel_size=(1, 1)))
 
                 self.skip_convs.append(nn.Conv1d(in_channels=dilation_channels,
+                                                 out_channels=skip_channels,
+                                                 kernel_size=(1, 1)))
+
+                self.skip_2convs.append(nn.Conv2d(in_channels=dilation_channels,
                                                  out_channels=skip_channels,
                                                  kernel_size=(1, 1)))
 
@@ -213,7 +218,7 @@ class STPGNN(nn.Module):
             residual = x
             filter = self.filter_convs[i](residual)
             filter = torch.tanh(filter)
-            gate = self.gate_convs[i](residual)
+            gate = self.filter_convs[i](residual)
             gate = torch.sigmoid(gate)
             x = filter * gate
             x_a = self.pgconv[i](residual, supports_a)
@@ -222,7 +227,7 @@ class STPGNN(nn.Module):
             x = alpha_sigmoid * x_a +  (1 - alpha_sigmoid) * x
             x = x + residual[:, :, :, -x.size(3):]
             s = x
-            s = self.skip_convs[i](s)
+            s = self.skip_2convs[i](s)
             if isinstance(skip, int):  # B F N T
                 skip = s.transpose(2, 3).reshape([s.shape[0], -1, s.shape[2], 1]).contiguous()
             else:

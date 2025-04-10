@@ -166,8 +166,8 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--device', type=str, default='cuda:1', help='')
-    parser.add_argument('--data', type=str, default='PEMS08', help='data path')
+    parser.add_argument('--device', type=str, default='cuda:0', help='')
+    parser.add_argument('--data', type=str, default='PEMS04', help='data path')
     parser.add_argument('--seq_length', type=int, default=12, help='output length')
     parser.add_argument('--in_len', type=int, default=12, help='input length')
     parser.add_argument('--nhid', type=int, default=32, help='')
@@ -180,9 +180,9 @@ if __name__ == "__main__":
     parser.add_argument('--print_every', type=int, default=50, help='')
     parser.add_argument('--runs', type=int, default=1, help='number of experiments')
     parser.add_argument('--expid', type=int, default=1, help='experiment id')
-    parser.add_argument('--topk', type=int, default=175, help='topk')
+    parser.add_argument('--topk', type=int, default=70, help='topk')
     parser.add_argument('--iden', type=str, default='', help='identity')
-    parser.add_argument('--dims', type=int, default=32, help='dimension of embeddings')
+    parser.add_argument('--dims', type=int, default=64, help='dimension of embeddings')
     parser.add_argument('--order', type=int, default=2, help='order of graph convolution')
 
     args = parser.parse_args()
